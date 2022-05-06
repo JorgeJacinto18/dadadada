@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tutoriales</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Description" lang="en" content="open source html and css template">
+<meta name="author" content="mlp design">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="slidy.css">
+</head>
+
+<body>
+    <div id="menu">
+    <nav>
+    <input type="checkbox" id="show-menu" role="button">
+    <label for="show-menu" class="open"><span class="fa fa-bars"></span></label>
+    <label for="show-menu" class="close"><span class="fa fa-times"></span></label>
+    <ul id="topnav">  
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Acerca de nosotros</a></li>
+    <li><a href="#">Login</a></li>
+    <li>
+        <ul>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+    </li>
+    </ul>
+    </nav>
+    </div>
+    <div id="container">
+    <div id="pageheader">
+    <h1>Tutoriales para Informatica</h1>
+    </div>
+    
+    <div class="section">
+    <div class="pageitem">
+    <div id="slider">
+    <figure>
+    <img src="http://lorempixel.com/g/680/300/people/1" alt>
+    <img src="http://lorempixel.com/g/680/300/nature/1" alt>
+    <img src="http://lorempixel.com/g/680/300/city/1" alt>
+    <img src="http://lorempixel.com/g/680/300/people/1" alt> <!-- note 1st image is also the last -->
+    </figure>
+    </div>
+    </div>
+    </div>
+    
+    <div class="section">
+    <div class="pageitem">
+    <div class="col">
+    <h2>Levantar un Servidor DNS</h2>
+    <p>
+        El sistema de nombres de dominio o DNS (Domain Name System)  es un conjunto de protocolos 
+        y servicios que nació con la finalidad de evitar a las personas usuarias el esfuerzo de 
+        tener que recordar una dirección IP. Sin lugar a duda, nos resulta más fácil recordar 
+        un nombre, y además la dirección numérica podría cambiar por diferentes razones, sin que 
+        por ello cambie el nombre.
+    </p>
+    <h2>Pasos para hacerlo</h2>
+    <p>
+        Lo primero que debemos de hacer es convertinos en root, para ello necesitamos haber 
+        creado un usuario normal y un root, algo que la hicimos anteriormente. Una vez hecho, 
+        proseguimos con los siguientes pasos.
+    </p>
+    <p>
+        Primero debemos de instalar el servicio/paquete bind con el siguiente comando:
+        <b>apt-get install bind9</b>
+    </p>
+    <p>
+        Nos moveremos/cambiamos de directorio para realizar la configuración del DNS con el 
+        comando: <b>cd /etc/bind</b>
+    </p>
+    <p>
+        Dentro del directorio, debemos modificar un archivo que contiene el direcotio llamada 
+        <b>named.conf.local</b>, para verificar que si esta, podemos usar el comando 
+        <b>ls -l</b> y despues usar <b>vi named.conf.local</b> para modificarlo.
+    </p>
+    <p>
+        Una vez dentro para mdificar el archivo, tendremos texto dentro que nos servida para 
+        configurar para nuestro DNS, con ello debermos de usar la siguiente estructura:
+    </p>
+    <p><b>zone </b>"midominio(ejemplo: acd.ejemplo.com)" {</p>
+    <p><b>type master;</b></p>
+    <p><b>file </b>"ubicacion del archivo (ejemplo: /etc/bind/db.acd)"</p>
+    <p>};</p>
+    <p>
+        Guardamos el archivo, regresando a la carpeta en donde el archivo se encuentra. Estando 
+        ahí,vamos a copiar un archivo que usaremos como base para editarlo a nuestras necesidades. 
+        El archivo se llama <b>db.local</b>, y para copiarlo usaremos el siguiente comando: 
+        <b>cp db.local db.acd </b>   Nota: el nombre que pusiste en file va en acd
+    </p>
+    <p>Ahora editaremos el archivo con VI: <b>vi db.acd</b>, dentro lo adaptaremos a nuestras 
+    necesidades</p>
+    <h3>Que hacer dentro del archivo db.</h3>
+    <p>El archivo posee una estructura, la cual mostraremos parcialmente a continuación y marcaremos en 
+        negritas las partes que deben ser modificadas. NOTA: En donde indique <i>tudomino</i>
+        deberas de cambiarlo con el nombre de tu domino en ves de dejar el ejemplo usado
+    </p>
+    <p>BIND data file for abc.ejemplo.com<b>(tudominio)</b></p>
+    <pre>@    IN    SOA     <b>acd.ejemplo.com(tudominio)      root.acd.ejemplo.com(tudomino)</b></pre>
+    <pre>     IN  NS  <b>ns1.acd.ejemplo.mx(tudominio)</b></pre>
+    <pre><b>ns1    IN  A   127.0.0.1(TudominioIPv4)</b></pre>
+    <pre><b>ns1    IN  AAAA   2001:0db8:85a3:0000:0000:8a2e:0370:7334(TudominioIPv6 si la posees)</b></pre>
+    <p>Lo anterior seria lo más ensencial para levantar un servidor DNS, sin embargo mostraremos
+        la estructura basica para hacer registro y el siginicado de algunos terminos usados en 
+        los registros
+    </p>
+    <h2>Estructura de los registros DNS</h2>
+    <pre>Nombre registro    Protocolo en uso    Tipo registros   Direccion o nombre</pre>
+    <p><b>Ejemplo: </b>paja IN A 148.202.48.1</p>
+    <h2>Algunos terminos</h2>
+    <p><b>$TTL: </b>Tiempo de vida de los registros</p>
+    <p><b>@: </b>Hace referencia al nombre de nuestro dominio</p>
+    <p><b>IN: </b>Indica el protocolo(En este caso, de Internet)</p>
+    <p><b>SOA: </b>Registro de autoridad</p>
+    <p><b>NS: </b>Name Server o Nombre del servidor</p>
+    <p><b>A: </b>Direccion de IPv4</p>
+    <p><b>AAAA: </b>Direccion de IPv6</p>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </body>
+    </html>

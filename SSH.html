@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Tutoriales</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Description" lang="en" content="open source html and css template">
+<meta name="author" content="mlp design">
+<meta name="robots" content="index, follow">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="slidy.css">
+</head>
+
+<body>
+    <div id="menu">
+    <nav>
+    <input type="checkbox" id="show-menu" role="button">
+    <label for="show-menu" class="open"><span class="fa fa-bars"></span></label>
+    <label for="show-menu" class="close"><span class="fa fa-times"></span></label>
+    <ul id="topnav">  
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Acerca de nosotros</a></li>
+    <li><a href="#">Login</a></li>
+    <li>
+        <ul>
+        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+        </ul>
+    </li>
+    </ul>
+    </nav>
+    </div>
+    <div id="container">
+    <div id="pageheader">
+    <h1>Tutoriales para Informatica</h1>
+    </div>
+    
+    <div class="section">
+    <div class="pageitem">
+    <div id="slider">
+    <figure>
+    <img src="http://lorempixel.com/g/680/300/people/1" alt>
+    <img src="http://lorempixel.com/g/680/300/nature/1" alt>
+    <img src="http://lorempixel.com/g/680/300/city/1" alt>
+    <img src="http://lorempixel.com/g/680/300/people/1" alt> <!-- note 1st image is also the last -->
+    </figure>
+    </div>
+    </div>
+    </div>
+    
+    <div class="section">
+    <div class="pageitem">
+    <div class="col">
+    <h2>Levantar un Servidor SSH</h2>
+    <p>
+        El sistema de nombres de dominio o DNS (Domain Name System)  es un conjunto de protocolos 
+        y servicios que nació con la finalidad de evitar a las personas usuarias el esfuerzo de 
+        tener que recordar una dirección IP. Sin lugar a duda, nos resulta más fácil recordar 
+        un nombre, y además la dirección numérica podría cambiar por diferentes razones, sin que 
+        por ello cambie el nombre.
+    </p>
+    <h2>Pasos para hacerlo</h2>
+    <p>
+        Primero deberemos ingresar en nuestro equipo en donde queremos instalar este servicio,
+         hecho esto, debemos de ser root para hacerlo con el siguiente comando: <b>su -</b> e 
+        ingresamos nuestra contraseña de root.
+    </p>
+    <p>
+        Podemos revisar los puertos que tenemos para ver cuales tenemos disponibles y escoger 
+        de esos el que queramos con el siguiente comando: <b>ss -nltup</b>
+    </p>
+    <p>
+        Una vez hecho lo anterior, ahora procedemos a instalar el paquete con la siguiente instrucción: 
+        <b>apt-get install openssh-server</b>, necesario para nuestro servidor SSH
+    </p>
+    <p>Lo que necesitamos para configurar correctamente son los siguientes puntos.</p>
+    <p><b>Deshabilitar iniciar sesión como root</b></p>
+    <p><b>Cambiar el puerto</b></p>
+    <p><b>Crear un usuario</b></p>
+    <p>
+        Para empezar a configurar primero nos moveremos de directorio con lo siguiente: 
+        <b>cd /etc/ssh/</b>
+    </p>
+    <p>
+        Dentro podemos revisar el contenido que tiene con <b>ls -l</b> para estar seguros 
+        que el documento que vamos a modificar este ahí. Los modificaremos con VI con la 
+        siguiente instrucción: <b>vi sshd_config</b>
+    </p>
+    <p>Dentro debemos modificar 2 linea, <b>Port y PermitRootLogin</b></p>
+    <p>En la linea de Port deberemos cambiar el puerto al que tu gustes, de preferencia 
+        entre 1025 al 47,000.
+    </p>
+    <p>
+        Ya terminado la configuración, ahora queda reiniciar el servicio con el siguiente 
+        comando: <b>system restart ssh</b> y con ello hemos terminado
+    </p>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </body>
+    </html>
